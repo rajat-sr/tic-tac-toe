@@ -1,5 +1,10 @@
-export type Mark = "X" | "O"
-export type TileType = Mark | ""
+export const Mark = {
+  X: "X",
+  O: "O",
+} as const
+
+export type MarkType = keyof typeof Mark
+export type TileType = MarkType | ""
 
 export function initializeGrid(gridSize: number) {
   return [...Array(gridSize)].map(() => Array(gridSize).fill(""))
@@ -8,7 +13,7 @@ export function initializeGrid(gridSize: number) {
 export function hasPlayerWon(
   x: number,
   y: number,
-  mark: Mark,
+  mark: MarkType,
   grid: TileType[][]
 ) {
   const gridSize = grid.length

@@ -1,11 +1,17 @@
 import { useEffect, useState } from "react"
 import _ from "lodash"
-import { hasPlayerWon, initializeGrid, Mark, TileType } from "../lib/game"
+import {
+  hasPlayerWon,
+  initializeGrid,
+  Mark,
+  MarkType,
+  TileType,
+} from "../lib/game"
 import styles from "../styles/Playground.module.css"
 
 export default function Playground({ gridSize }: { gridSize: number }) {
   const [movesMade, setMovesMade] = useState<number>(0)
-  const [currentMark, setCurrentMark] = useState<Mark>("X")
+  const [currentMark, setCurrentMark] = useState<MarkType>(Mark.X)
   const [grid, setGrid] = useState<TileType[][]>(initializeGrid(gridSize))
 
   function restartGame() {
@@ -20,7 +26,7 @@ export default function Playground({ gridSize }: { gridSize: number }) {
     }, 100)
   }
 
-  function handleClick(x: number, y: number) {
+  function onTileClick(x: number, y: number) {
     if (grid[x][y] !== "") {
       return
     }
@@ -57,7 +63,7 @@ export default function Playground({ gridSize }: { gridSize: number }) {
             <Tile
               key={`${x}${y}`}
               type={tile}
-              onClick={() => handleClick(x, y)}
+              onClick={() => onTileClick(x, y)}
             />
           ))}
         </div>
