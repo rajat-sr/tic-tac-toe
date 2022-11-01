@@ -21,11 +21,11 @@
   align-items: center;
 }
 
-.footer a {
+.gridbuttons {
+  margin-top: 10px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
+  flex-direction: row;
+  gap: 10px;
 }
 
 .title a {
